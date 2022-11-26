@@ -5,6 +5,8 @@ from point import Point
 from sphere import Sphere
 from scene import Scene
 from engine import RenderEngine
+from light import Light
+from material import Material
 
 def main():
     # WIDTH & HEIGHT ARE CONSTANT SO THEY ARE WRITTEN IN UPPER CASE
@@ -13,8 +15,9 @@ def main():
     camera = Vector(0, 0, -1)
     image = Image(WIDTH, HEIGHT)
     # sphere with coordinates, radius
-    objects = [Sphere(Point(0, 0, 0), 0.5, Color.from_hex("#FF0000"))]
-    scene = Scene(camera, objects, WIDTH, HEIGHT)
+    objects = [Sphere(Point(0, 0, 0), 0.3, Material(Color.from_hex("#FF0000")))]
+    lights = [Light(Point(1.5, -0.5, -10.0), Color.from_hex("#FFFFFF"))]
+    scene = Scene(camera, objects, lights, WIDTH, HEIGHT)
     engine = RenderEngine()
     image = engine.render(scene)
     # writing the buffer to the file called test.ppm which is stored
